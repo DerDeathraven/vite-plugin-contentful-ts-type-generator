@@ -1,9 +1,10 @@
 {
-  "name": "contentful-ts-type-generator",
+  "name": "vite-plugin-contentful-ts-type-generator",
   "version": "0.6.3",
   "description": "Typescript type declaration file generator from Contentful models",
-  "main": "generateContentfulTypes.js",
+  "main": "vitePlugin.js",
   "scripts": {
+    "install": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "git+https://github.com/arimkevi/contentful-ts-type-generator.git",
@@ -19,11 +20,19 @@
   },
   "homepage": "https://github.com/arimkevi/contentful-ts-type-generator#readme",
   "dependencies": {
+    "@types/node": "^18.11.18",
     "commander": "8.1.0",
     "contentful": "8.5.3",
-    "rx": "4.1.0"
+    "node": "^19.4.0",
+    "path": "^0.12.7",
+    "rx": "4.1.0",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.4"
   },
   "bin": {
     "generateContentfulTypes": "./generateContentfulTypes.js"
+  },
+  "devDependencies": {
+    "@types/rx": "^4.1.2"
   }
 }
