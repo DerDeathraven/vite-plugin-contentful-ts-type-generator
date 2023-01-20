@@ -1,4 +1,4 @@
-import { PluginOption } from "vite";
+import { Plugin, PluginOption } from "vite";
 import generateContentfulTypes from "./generateContentfullTypes";
 
 export type Options = {
@@ -36,5 +36,5 @@ export default function generateContentfulTypesPlugin(options: Options) {
       );
       console.log("[ContenfulTypesPlugin] Generated Types");
     },
-  } as PluginOption;
+  } as Plugin;
 }
