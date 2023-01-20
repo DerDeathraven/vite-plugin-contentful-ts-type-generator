@@ -1,6 +1,10 @@
+# Fork from https://github.com/arimkevi/contentful-ts-type-generator
+
+## converts the type generator to Typescript and exports a vite plugin
+
 ## Usage
 
-1. Get preview api token and spaceId from Contentful. 
+1. Get preview api token and spaceId from Contentful.
 
 2. Install this repository into your node project
 
@@ -9,6 +13,7 @@ npm install github:arimkevi/contentful-ts-type-generator
 ```
 
 3. Run the script to get help options
+
 ```
 npx generateContentfulTypes
 ```
@@ -36,22 +41,21 @@ If you use the `generateContentfulTypes` command in your package.json scripts, y
 6. Once the types are generated you can use contentful.js calling the following function:
 
 ```ts
-
 const client = contentful.createClient({
-  host: 'contentfulHost',
-  accessToken: 'accessToken',
-  space: 'spaceId',
+  host: "contentfulHost",
+  accessToken: "accessToken",
+  space: "spaceId",
   resolveLinks: true,
-})
+});
 
 export function getContent<T>(
-  contentfulLocale: string, contentType: string
+  contentfulLocale: string,
+  contentType: string
 ): Promise<contentful.Entry<T>> {
   return client
     .getEntries({ content_type: contentType, locale: contentfulLocale })
-    .then((response: contentful.EntryCollection<T>) => response.items[0])
+    .then((response: contentful.EntryCollection<T>) => response.items[0]);
 }
 
-getContent<T>(locale, YourContentfulType)
-
+getContent<T>(locale, YourContentfulType);
 ```

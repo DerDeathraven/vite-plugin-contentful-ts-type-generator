@@ -7,25 +7,22 @@
     "install": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "git+https://github.com/arimkevi/contentful-ts-type-generator.git",
+  "repository": "git+https://github.com/DerDeathraven/vite-plugin-contentful-ts-type-generator",
   "keywords": [
     "contentful",
     "typescript",
     "definition"
   ],
-  "author": "Artur Rimkevitch",
+  "author": "Artur Rimkevitch & Jean-Luc Christoph Dittler",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/arimkevi/contentful-ts-type-generator/issues"
   },
   "homepage": "https://github.com/arimkevi/contentful-ts-type-generator#readme",
   "dependencies": {
-    "@types/node": "^18.11.18",
-    "commander": "8.1.0",
     "contentful": "8.5.3",
     "node": "^19.4.0",
     "path": "^0.12.7",
-    "rx": "4.1.0",
     "typescript": "^4.9.4",
     "vite": "^4.0.4"
   },
@@ -33,6 +30,7 @@
     "generateContentfulTypes": "./generateContentfulTypes.js"
   },
   "devDependencies": {
+    "@types/node": "^18.11.18",
     "@types/rx": "^4.1.2"
   }
 }
