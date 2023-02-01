@@ -63,7 +63,4 @@ const writeTypesToFile = (
   });
 };
 
-generateContentfulTypes(
-  "e8fwbhul2hwb",
-  "J97KbbViiEIOgZf3MSTBE3ySkWYnwGMeSDLYFRv2JYM"
-);
+
