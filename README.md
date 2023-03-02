@@ -1,61 +1,34 @@
-# Fork from https://github.com/arimkevi/contentful-ts-type-generator
-
 ## converts the type generator to Typescript and exports a vite plugin
 
 ## Usage
 
 1. Get preview api token and spaceId from Contentful.
 
-2. Install this repository into your node project
+2. Install this repository into your vite project
 
 ```
 npm install github:arimkevi/contentful-ts-type-generator
 ```
 
-3. Run the script to get help options
+3. add the plugin to your vite plugin array
+4. watch as a file is created containing all types for your cms additionally an enum with all Contentful id is created.
 
-```
-npx generateContentfulTypes
-```
+````typescript
 
-4. Base usage
-
-```
-npx generateContentfulTypes <SPACE_ID> <PREVIEW_API_TOKEN>
-```
-
-This will generate contentfulTypes.d.ts file that will contain all of the space model as interfaces and inheritance. Export contains also model sys.id.
-
-If you use the `generateContentfulTypes` command in your package.json scripts, you can leave out the `npx` in front of it.
-
-5. Options
-
-```
-  -o, --output <file>, Output file path. Default: './contentfulTypes.d.ts'
-  -e, --environment [value], Contentful environment id to use. Default: 'master'
-  -p, --prefix <value>, Name prefix for generated interfaces. Default: ''
-  -h, --host [value], Default: 'api.contentful.com'
-  -i, --ignore [value], Ignored field(s): a single field id or comma separated list of field ids. Default: ''
-```
-
-6. Once the types are generated you can use contentful.js calling the following function:
-
-```ts
-const client = contentful.createClient({
-  host: "contentfulHost",
-  accessToken: "accessToken",
-  space: "spaceId",
-  resolveLinks: true,
-});
-
-export function getContent<T>(
-  contentfulLocale: string,
-  contentType: string
-): Promise<contentful.Entry<T>> {
-  return client
-    .getEntries({ content_type: contentType, locale: contentfulLocale })
-    .then((response: contentful.EntryCollection<T>) => response.items[0]);
-}
-
-getContent<T>(locale, YourContentfulType);
-```
+export async function fetchByContentType<T extends ContentFulType>(
+  entry: T,
+  options?: Object
+): Promise<Entry<contentfulEntries<T>>[]> {
+  try {
+    const client = await getContentfulClient()
+    const response = await client.getEntries<contentfulEntries<T>>({
+      content_type: entry,
+      ...(options || {}),
+    })
+    return response.items
+  } catch (e) {
+    console.error('Could not fetch contentful entries of the content type.', e)
+    return []
+  }
+}```
+````

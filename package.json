@@ -1,11 +1,10 @@
 {
   "name": "vite-plugin-contentful-ts-type-generator",
-  "version": "0.6.3",
+  "version": "1.1.0",
   "description": "Typescript type declaration file generator from Contentful models",
   "main": "vitePlugin.js",
   "scripts": {
-    "install": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "tsc"
   },
   "repository": "git+https://github.com/DerDeathraven/vite-plugin-contentful-ts-type-generator",
   "keywords": [
@@ -13,21 +12,18 @@
     "typescript",
     "definition"
   ],
-  "author": "Artur Rimkevitch & Jean-Luc Christoph Dittler",
+  "author": "Jean-Luc Christoph Dittler",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/arimkevi/contentful-ts-type-generator/issues"
+    "url": "https://github.com/DerDeathraven/vite-plugin-contentful-ts-type-generator/issues"
   },
-  "homepage": "https://github.com/arimkevi/contentful-ts-type-generator#readme",
+  "homepage": "https://github.com/DerDeathraven/vite-plugin-contentful-ts-type-generator#readme",
   "dependencies": {
     "contentful": "8.5.3",
     "node": "^19.4.0",
     "path": "^0.12.7",
     "typescript": "^4.9.4",
     "vite": "^4.0.4"
-  },
-  "bin": {
-    "generateContentfulTypes": "./generateContentfulTypes.js"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",

@@ -4,9 +4,9 @@ export function formatMap(field: any, prefix = "", isArray = false) {
   const type = field?.type;
   if (!type) return "any";
   const dataMap: Record<string, string> = {
-    Text: dateFormatter(field, isArray),
-    Symbol: dateFormatter(field, isArray),
-    Date: dateFormatter(field, isArray),
+    Text: stringishConverter(field, isArray),
+    Symbol: stringishConverter(field, isArray),
+    Date: stringishConverter(field, isArray),
     Number: "number",
     Integer: "number",
     Boolean: "boolean",
@@ -22,7 +22,7 @@ export function formatMap(field: any, prefix = "", isArray = false) {
   return formatArray(isArray, "any");
 }
 
-function dateFormatter(field: any, isArray: boolean) {
+function stringishConverter(field: any, isArray: boolean) {
   const specificValuesValidation =
     field.validations &&
     field.validations.find((validation: any) =>
@@ -84,3 +84,7 @@ export const toInterfaceName = (string: string, prefix = "") => {
       .replace(/-[A-Za-z0-9_]/g, (match) => match.slice(1).toUpperCase())
   );
 };
+
+export function isDate(value: string) {
+  return new Date(value).toString() !== "Invalid Date";
+}

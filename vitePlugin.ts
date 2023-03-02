@@ -7,34 +7,27 @@ export type Options = {
   outputDir?: string;
   host?: string;
   environment?: string;
-  prefix?: string;
-  ignoredFields?: string[];
 };
+
+let gotExecuted = false;
 
 export default function generateContentfulTypesPlugin(options: Options) {
   return {
     name: "contentful-types",
     buildStart() {
+      if (gotExecuted) return;
       console.log("[ContenfulTypesPlugin] Generating contentful types");
-      const {
-        spaceID,
-        token,
-        outputDir,
-        host,
-        environment,
-        prefix,
-        ignoredFields,
-      } = options;
+      const { spaceID, token, outputDir, host, environment } = options;
       generateContentfulTypes(
         spaceID,
         token,
         outputDir,
         host,
-        environment,
-        prefix,
-        ignoredFields
-      );
-      console.log("[ContenfulTypesPlugin] Generated Types");
+        environment
+      ).then(() => {
+        console.log("[ContenfulTypesPlugin] Generated Types");
+        gotExecuted = true;
+      });
     },
   } as Plugin;
 }
