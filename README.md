@@ -13,22 +13,26 @@ npm install github:DerDeathraven/vite-plugin-contentful-ts-type-generator
 3. add the plugin to your vite plugin array
 4. watch as a file is created containing all types for your cms additionally an enum with all Contentful id is created.
 
-````typescript
+## how to integrate
 
-export async function fetchByContentType<T extends ContentFulType>(
+use this function to ensure a typesafe contentful experience
+note that this requires to be called with the ContentfulType enum
+
+```typescript
+export async function fetchByContentType<T extends ContentfulType>(
   entry: T,
   options?: Object
-): Promise<Entry<contentfulEntries<T>>[]> {
+): Promise<Entry<ContentfulEntries<T>>[]> {
   try {
-    const client = await getContentfulClient()
-    const response = await client.getEntries<contentfulEntries<T>>({
+    const client = await getContentfulClient();
+    const response = await client.getEntries<ContentfulEntries<T>>({
       content_type: entry,
       ...(options || {}),
-    })
-    return response.items
+    });
+    return response.items;
   } catch (e) {
-    console.error('Could not fetch contentful entries of the content type.', e)
-    return []
+    console.error("Could not fetch contentful entries of the content type.", e);
+    return [];
   }
-}```
-````
+}
+```
