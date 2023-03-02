@@ -7,7 +7,7 @@
 2. Install this repository into your vite project
 
 ```
-npm install github:arimkevi/contentful-ts-type-generator
+npm install github:DerDeathraven/vite-plugin-contentful-ts-type-generator
 ```
 
 3. add the plugin to your vite plugin array
